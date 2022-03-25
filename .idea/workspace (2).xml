@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="71ff098b-a395-4fe6-9670-ff1adc17135d" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="26rcp4Omcsp8H2SbDA0lKSVsm6a" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager" selected="TestNG.Mymain">
+    <configuration name="Mymain (1)" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="MyMavenProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Mini_assignment_4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Mini_assignment_4" />
+      <option name="MAIN_CLASS_NAME" value="Mini_assignment_4.Mymain" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Mymain" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="MyMavenProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Mini_assignment_4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Mini_assignment_4" />
+      <option name="MAIN_CLASS_NAME" value="Mini_assignment_4.Mymain" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Mymain.checkClickCart" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="MyMavenProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Mini_assignment_4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Mini_assignment_4" />
+      <option name="MAIN_CLASS_NAME" value="Mini_assignment_4.Mymain" />
+      <option name="METHOD_NAME" value="checkClickCart" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Mymain.login" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="MyMavenProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Mini_assignment_4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Mini_assignment_4" />
+      <option name="MAIN_CLASS_NAME" value="Mini_assignment_4.Mymain" />
+      <option name="METHOD_NAME" value="login" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Mymain.verifyingremove" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="MyMavenProject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Mini_assignment_4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Mini_assignment_4" />
+      <option name="MAIN_CLASS_NAME" value="Mini_assignment_4.Mymain" />
+      <option name="METHOD_NAME" value="verifyingremove" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.Mymain" />
+        <item itemvalue="TestNG.Mymain.verifyingremove" />
+        <item itemvalue="TestNG.Mymain.login" />
+        <item itemvalue="TestNG.Mymain.checkClickCart" />
+        <item itemvalue="TestNG.Mymain (1)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="71ff098b-a395-4fe6-9670-ff1adc17135d" name="Changes" comment="" />
+      <created>1648185328285</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1648185328285</updated>
+    </task>
+    <servers />
+  </component>
+</project>
