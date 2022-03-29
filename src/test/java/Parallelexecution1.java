@@ -6,6 +6,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -14,6 +15,7 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class Parallelexecution1 {
     static WebDriver driver;
@@ -21,6 +23,7 @@ public class Parallelexecution1 {
     BankManagerLoginPage manager_page;
     CustomerloginPage customer_login;
     CustomersAccountPage customer_account;
+    Transactionpage transaction;
     int deposit;
     int withdraw;
     static ExtentReports extent = new ExtentReports();
@@ -113,11 +116,7 @@ public class Parallelexecution1 {
         Assert.assertTrue(customer_account.depositbtnisExist());
         Assert.assertTrue(customer_account.withdrawlbtnExist());
         Assert.assertTrue(customer_account. transactionbtnisExist());
-        //
-        //Assert.assertTrue(customer_account.moneysubmitbtnisExist());
-        //Assert.assertTrue(customer_account.withdrawSubmitbtnisExist());
 
-        //Assert.assertTrue(customer_account.moneywithdrawbtn());
     }
     @Test(priority = 7)
     public void CustomeraddingMoneyToaccount() throws Exception {
@@ -150,6 +149,36 @@ public class Parallelexecution1 {
         test.info("customer Transactions are stored  successfully");
         Thread.sleep(2000);
         test.pass("transactions are updated Successfully");
+        transaction = new Transactionpage(driver);
+        List<WebElement> accountstatus=transaction.getaccountstatus();
+        List<WebElement> transactionType=transaction.getTransactionType();
+        Boolean accountStatus=false;
+        int counter=0;
+        for(WebElement ele :accountstatus)
+        {
+            String type=transactionType.get(counter).getText();
+            String val=ele.getText();
+            if(val.equals("10000"))
+            {
+                if(type.equals("Credit"))
+
+                accountStatus=true;
+            }
+            if(val.equals("5000"))
+            {
+                if(type.equals("Debit"))
+                {
+                    accountStatus=true;
+                }
+
+            }
+
+            counter++;
+        }
+        Assert.assertTrue(accountStatus);
+        test.info("Transaction details are correct and updated successfully");
+
+
     }
 
     @AfterTest

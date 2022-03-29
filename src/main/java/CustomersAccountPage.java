@@ -113,6 +113,17 @@ public class CustomersAccountPage {
     {
         return moneyToWithdrawwl;
     }
+    public int gettingactualwithdrawmoney()
+    {
+        String  actualwithdrawmoney=driver.findElement(By.xpath("//td[contains(text(),'10000')]")).getText();
+        return ((Integer.parseInt(actualwithdrawmoney)));
+    }
+    //public String gettingStatusofmoney()
+    {
+
+    }//
+
+
     public void checkingTransaction() throws InterruptedException {
         Thread.sleep(3000);
         WebElement transactionButton=driver.findElement(transactionbtn);

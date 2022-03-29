@@ -2,6 +2,9 @@ package Mini_assignment_4;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 public class loginPage {
     WebDriver driver;
     By user_name = By.id("user-name");
@@ -45,6 +48,7 @@ public class loginPage {
     }
     public void verifying_enable()
     {
+        new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='add-to-cart-sauce-labs-backpack']")));
         WebElement addToCart=driver.findElement(By.xpath("//*[@id='add-to-cart-sauce-labs-backpack']"));
         addToCart.isDisplayed();
         addToCart.isEnabled();
@@ -55,6 +59,13 @@ public class loginPage {
         remove_icon.click();
         remove_icon.isEnabled();
         remove_icon.click();
+    }
+    public void clickContinue()
+    {
+        WebElement continuebtn=driver.findElement(By.xpath("//input[@id='continue']"));
+        continuebtn.click();
+        WebElement finishbtn=driver.findElement(By.xpath("//button[@id='finish']"));
+        finishbtn.click();
     }
 }
 

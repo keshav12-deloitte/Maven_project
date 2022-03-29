@@ -6,6 +6,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -14,6 +15,7 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class Parallelexecution2 {
     static WebDriver driver;
@@ -21,6 +23,7 @@ public class Parallelexecution2 {
     BankManagerLoginPage manager_page;
     CustomerloginPage customer_login;
     CustomersAccountPage customer_account;
+    Transactionpage transaction;
     static ExtentReports extent = new ExtentReports();
     static ExtentSparkReporter spark = new ExtentSparkReporter("ParallelExecution2Extentreport.html");
     public static void takeSnapShot(WebDriver webdriver, String fileWithPath) throws Exception {
@@ -134,7 +137,7 @@ public class Parallelexecution2 {
         ExtentTest test = extent.createTest("verifying the cutomers can withdrawmoney from their account");
         customer_account.customerWithdrawMoney(15000);
         takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\customerWithdrawMoney.jpg");
-        test.info("customer withdrawed money successfully");
+        test.warning("customer fail to withdraw money ,enter money greater than available balance");
         Thread.sleep(2000);
     }
     @Test(priority = 9)
@@ -145,6 +148,25 @@ public class Parallelexecution2 {
         test.info("customer Transactions are stored  successfully");
         Thread.sleep(2000);
         test.pass("transactions are updated Successfully");
+        transaction = new Transactionpage(driver);
+        List<WebElement> accountstatus=transaction.getaccountstatus();
+        List<WebElement> transactionType=transaction.getTransactionType();
+        Boolean accountStatus=false;
+        int counter=0;
+        for(WebElement ele :accountstatus)
+        {
+            String type=transactionType.get(counter).getText();
+            String val=ele.getText();
+            if(val.equals("10000"))
+            {
+                if(type.equals("Credit"))
+
+                    accountStatus=true;
+            }
+            counter++;
+        }
+        Assert.assertTrue(accountStatus);
+        test.info("Transaction details are correct and updated successfully");
     }
 
     @AfterTest
