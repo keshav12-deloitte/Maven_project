@@ -22,7 +22,7 @@ public class Parallelexecution2 {
     CustomerloginPage customer_login;
     CustomersAccountPage customer_account;
     static ExtentReports extent = new ExtentReports();
-    static ExtentSparkReporter spark = new ExtentSparkReporter("ParallelExecution2.html");
+    static ExtentSparkReporter spark = new ExtentSparkReporter("ParallelExecution2Extentreport.html");
     public static void takeSnapShot(WebDriver webdriver, String fileWithPath) throws Exception {
 
         TakesScreenshot scrShot = ((TakesScreenshot) webdriver);

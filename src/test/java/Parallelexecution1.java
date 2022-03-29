@@ -24,7 +24,7 @@ public class Parallelexecution1 {
     int deposit;
     int withdraw;
     static ExtentReports extent = new ExtentReports();
-    static ExtentSparkReporter spark = new ExtentSparkReporter("ParallelExecution1.html");
+    static ExtentSparkReporter spark = new ExtentSparkReporter("ParallelExecution1ExtentReport.html");
     public static void takeSnapShot(WebDriver webdriver, String fileWithPath) throws Exception {
 
         TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
