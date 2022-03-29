@@ -71,17 +71,16 @@ public class BankManagerLoginPage {
                 if(j==0)
                 {
                     firstName=cell.getStringCellValue();
-                    System.out.println(firstName);
                 }
                 if(j==1)
                 {
                     lastName=cell.getStringCellValue();
-                    System.out.println(lastName);
+
                 }
                 if(j==2)
                 {
                     int postal=(int)cell.getNumericCellValue();//reading the postalcode from excel sheet and storing it as a int datatype
-                    System.out.println(postal);
+
                 }
             }
         }
@@ -113,7 +112,6 @@ public class BankManagerLoginPage {
     public void openAccount() throws InterruptedException {
 
         WebElement openAccountbutton=driver.findElement(openAccount);
-        //Assert.assertTrue(openAccountbutton.isDisplayed());//to check open account is displayed or not
         openAccountbutton.click();//cliking on open account
         new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[contains(text(),'Customer :')]//following-sibling::select")));
         WebElement dropDown = driver.findElement(customerName);//creating a web element for CustomerName
@@ -124,14 +122,12 @@ public class BankManagerLoginPage {
         Select selectObject1 = new Select(dropDown1);
         selectObject1.selectByIndex(3);
         WebElement clickProcess= driver.findElement(processButton);
-        //Assert.assertTrue(clickProcess.isDisplayed());
         clickProcess.click();
         driver.switchTo().alert().accept();
     }
     public void home()
     {
         WebElement homeButton=driver.findElement(homebtn);
-        //Assert.assertTrue(homeButton.isDisplayed());////Checking Whether the Home button is displayed on the site or not.
         homeButton.click();//clicking home button
     }
 

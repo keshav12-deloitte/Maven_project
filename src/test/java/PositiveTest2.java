@@ -6,7 +6,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -15,17 +14,18 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
-public class Parallelexecution2 {
+public class PositiveTest2 {
     static WebDriver driver;
     XYZHomePage home_page;
     BankManagerLoginPage manager_page;
     CustomerloginPage customer_login;
     CustomersAccountPage customer_account;
     Transactionpage transaction;
+    int deposit;
+    int withdraw;
     static ExtentReports extent = new ExtentReports();
-    static ExtentSparkReporter spark = new ExtentSparkReporter("ParallelExecution2Extentreport.html");
+    static ExtentSparkReporter spark = new ExtentSparkReporter("PositiveTests2ExtentReport.html");
     public static void takeSnapShot(WebDriver webdriver, String fileWithPath) throws Exception {
 
         TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
@@ -49,7 +49,7 @@ public class Parallelexecution2 {
         driver.manage().window().maximize();// maximizing Window
         TakesScreenshot ts = (TakesScreenshot) driver;
         File src = ts.getScreenshotAs(OutputType.FILE);
-        File ds = new File(System.getProperty("user.dir") + "/TestFailureScreenhot" + "/TestingUrl.jpg");
+        File ds = new File(System.getProperty("user.dir") + "/TestSuccessScreenShot2" + "/TestingUrl.jpg");
         FileUtils.copyFile(src, ds);
     }
     @Test(priority = 1)
@@ -60,16 +60,16 @@ public class Parallelexecution2 {
         Assert.assertTrue(home_page.customerbtnIsExist());
         ExtentTest test = extent.createTest("Verify Home Page");
         test.pass("All the web Elements are available on home page");
-        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\HomePageverify.jpg") ;
+        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestSuccessScreenShot2\\HomePageverify.jpg") ;
     }
 
 
     @Test(priority = 2)
     public void verifyBankManagerloginPage() throws Exception {
         home_page.clickBankManagerLogin();
-        ExtentTest test = extent.createTest("Verify Bank Manager Login");
+        ExtentTest test = extent.createTest("Verify Bank Manager LoginPage");
         test.pass("Bank manager login Successfully");
-        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\bankmanagerlogin.jpg") ;
+        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestSuccessScreenShot2\\bankmanagerlogin.jpg") ;
         manager_page = new BankManagerLoginPage(driver);
         Assert.assertTrue(manager_page.addCustomerButtonisExist());
         Assert.assertTrue(manager_page.openAccountButtonisExist());
@@ -77,9 +77,10 @@ public class Parallelexecution2 {
     }
     @Test(priority = 3)
     public void BankManagerAddingCustomer() throws Exception{
+
         manager_page.clickAddCustomer();
         manager_page.adddetails();
-        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\addingCustomer.jpg");
+        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestSuccessScreenShot2\\addingCustomer.jpg");
         Thread.sleep(3000);
         manager_page.home();
         ExtentTest test = extent.createTest("Verifying Bank Manager can Add Customers");
@@ -94,7 +95,7 @@ public class Parallelexecution2 {
         home_page.clickBankManagerLogin();
         Thread.sleep(2000);
         manager_page.openAccount();
-        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\openAccount.jpg");
+        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestSuccessScreenShot2\\openAccount.jpg");
         Thread.sleep(1000);
         manager_page.home();
         Thread.sleep(1000);
@@ -114,65 +115,33 @@ public class Parallelexecution2 {
         Assert.assertTrue(customer_account.depositbtnisExist());
         Assert.assertTrue(customer_account.withdrawlbtnExist());
         Assert.assertTrue(customer_account. transactionbtnisExist());
-        //
-        //Assert.assertTrue(customer_account.moneysubmitbtnisExist());
-        //Assert.assertTrue(customer_account.withdrawSubmitbtnisExist());
 
-        //Assert.assertTrue(customer_account.moneywithdrawbtn());
     }
     @Test(priority = 7)
     public void CustomeraddingMoneyToaccount() throws Exception {
         customer_account=new CustomersAccountPage(driver);
         customer_account.customerDepositMoney();
-        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\customerDepositMoney.jpg");
+        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestSuccessScreenShot2\\customerDepositMoney.jpg");
         ExtentTest test = extent.createTest("verifying the cutomers can add money into their account");
         test.info("Customer deposited money Successfully");
         Thread.sleep(2000);
         String expectedvalue="Deposit Successful";
         String actualvalue=customer_account.gettingactualvalue();
         Assert.assertEquals(actualvalue,expectedvalue);
+        deposit=customer_account.gettingdepositmoney();
+
     }
     @Test(priority = 8)
-    public void withDrawMoney() throws Exception {
-        ExtentTest test = extent.createTest("verifying the cutomers can withdrawmoney from their account");
-        customer_account.customerWithdrawMoney(15000);
-        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\customerWithdrawMoney.jpg");
-        test.warning("customer fail to withdraw money ,enter money greater than available balance");
-        Thread.sleep(2000);
-    }
-    @Test(priority = 9)
-    public void verifyTransaction() throws Exception{
+    public void verifyTransaction() throws Exception {
         ExtentTest test = extent.createTest("verifying the cutomers transation history");
         customer_account.checkingTransaction();
-        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\checkingTransaction.jpg");
+        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestSuccessScreenShot\\checkingTransaction.jpg");
         test.info("customer Transactions are stored  successfully");
         Thread.sleep(2000);
         test.pass("transactions are updated Successfully");
-        transaction = new Transactionpage(driver);
-        List<WebElement> accountstatus=transaction.getaccountstatus();
-        List<WebElement> transactionType=transaction.getTransactionType();
-        Boolean accountStatus=false;
-        int counter=0;
-        for(WebElement ele :accountstatus)
-        {
-            String type=transactionType.get(counter).getText();
-            String val=ele.getText();
-            if(val.equals("10000"))
-            {
-                if(type.equals("Credit"))
-
-                    accountStatus=true;
-            }
-            counter++;
-        }
-        Assert.assertTrue(accountStatus);
-        test.info("Transaction details are correct and updated successfully");
     }
-
     @AfterTest
     public void afterTest() {
         extent.flush();
     }
-
 }
-

@@ -16,8 +16,9 @@ public class Listeners implements ITestListener {
 
     @Override
     public void onFinish(ITestContext context) {
-        Parallelexecution1.driver.quit();
-        Parallelexecution2.driver.quit();
+        PositiveTests.driver.quit();
+        NegativeTest.driver.quit();
+        PositiveTest2.driver.quit();
     }
 }
 

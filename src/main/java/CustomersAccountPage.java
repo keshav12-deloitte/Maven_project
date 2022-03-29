@@ -85,14 +85,13 @@ public class CustomersAccountPage {
     {
         return moneyTodeposit;
     }
-    //String expectedvalue="Deposit Successful";
-    //Assert.assertEquals(actualvalue,expectedvalue);//using hard assert for checking whether the both actual and expected are same
+
 
 
     public void customerWithdrawMoney(int money) throws InterruptedException {
+
         new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[contains(text(),'Withdrawl')]")));//waiting till the element is found
         WebElement withdrawlButton=driver.findElement(withdrawlbtn);//xpath of withdrawl button is stored in web element
-        //Assert.assertTrue(withdrawlButton.isDisplayed());
         withdrawlButton.click();//clicking withdrawbutton
         moneyToWithdrawwl=money;
         new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[contains(text(),'Amount to be Withdrawn :')]//following-sibling::input")));

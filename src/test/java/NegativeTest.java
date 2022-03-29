@@ -17,17 +17,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class Parallelexecution1 {
+public class NegativeTest{
     static WebDriver driver;
     XYZHomePage home_page;
     BankManagerLoginPage manager_page;
     CustomerloginPage customer_login;
     CustomersAccountPage customer_account;
     Transactionpage transaction;
-    int deposit;
-    int withdraw;
     static ExtentReports extent = new ExtentReports();
-    static ExtentSparkReporter spark = new ExtentSparkReporter("ParallelExecution1ExtentReport.html");
+    static ExtentSparkReporter spark = new ExtentSparkReporter("NegativeTestExtentreport.html");
     public static void takeSnapShot(WebDriver webdriver, String fileWithPath) throws Exception {
 
         TakesScreenshot scrShot = ((TakesScreenshot) webdriver);
@@ -51,7 +49,7 @@ public class Parallelexecution1 {
         driver.manage().window().maximize();// maximizing Window
         TakesScreenshot ts = (TakesScreenshot) driver;
         File src = ts.getScreenshotAs(OutputType.FILE);
-        File ds = new File(System.getProperty("user.dir") + "/TestSuccessScreenShot" + "/TestingUrl.jpg");
+        File ds = new File(System.getProperty("user.dir") + "/TestFailureScreenhot" + "/TestingUrl.jpg");
         FileUtils.copyFile(src, ds);
     }
     @Test(priority = 1)
@@ -62,7 +60,7 @@ public class Parallelexecution1 {
         Assert.assertTrue(home_page.customerbtnIsExist());
         ExtentTest test = extent.createTest("Verify Home Page");
         test.pass("All the web Elements are available on home page");
-        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestSuccessScreenShot\\HomePageverify.jpg") ;
+        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\HomePageverify.jpg") ;
     }
 
 
@@ -71,7 +69,7 @@ public class Parallelexecution1 {
         home_page.clickBankManagerLogin();
         ExtentTest test = extent.createTest("Verify Bank Manager Login");
         test.pass("Bank manager login Successfully");
-        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestSuccessScreenShot\\bankmanagerlogin.jpg") ;
+        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\bankmanagerlogin.jpg") ;
         manager_page = new BankManagerLoginPage(driver);
         Assert.assertTrue(manager_page.addCustomerButtonisExist());
         Assert.assertTrue(manager_page.openAccountButtonisExist());
@@ -81,7 +79,7 @@ public class Parallelexecution1 {
     public void BankManagerAddingCustomer() throws Exception{
         manager_page.clickAddCustomer();
         manager_page.adddetails();
-        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestSuccessScreenShot\\addingCustomer.jpg");
+        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\addingCustomer.jpg");
         Thread.sleep(3000);
         manager_page.home();
         ExtentTest test = extent.createTest("Verifying Bank Manager can Add Customers");
@@ -96,7 +94,7 @@ public class Parallelexecution1 {
         home_page.clickBankManagerLogin();
         Thread.sleep(2000);
         manager_page.openAccount();
-        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestSuccessScreenShot\\openAccount.jpg");
+        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\openAccount.jpg");
         Thread.sleep(1000);
         manager_page.home();
         Thread.sleep(1000);
@@ -116,36 +114,33 @@ public class Parallelexecution1 {
         Assert.assertTrue(customer_account.depositbtnisExist());
         Assert.assertTrue(customer_account.withdrawlbtnExist());
         Assert.assertTrue(customer_account. transactionbtnisExist());
-
     }
+
     @Test(priority = 7)
     public void CustomeraddingMoneyToaccount() throws Exception {
         customer_account=new CustomersAccountPage(driver);
         customer_account.customerDepositMoney();
-        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestSuccessScreenShot\\customerDepositMoney.jpg");
+        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\customerDepositMoney.jpg");
         ExtentTest test = extent.createTest("verifying the cutomers can add money into their account");
         test.info("Customer deposited money Successfully");
         Thread.sleep(2000);
         String expectedvalue="Deposit Successful";
         String actualvalue=customer_account.gettingactualvalue();
         Assert.assertEquals(actualvalue,expectedvalue);
-        deposit=customer_account.gettingdepositmoney();
-
     }
     @Test(priority = 8)
     public void withDrawMoney() throws Exception {
         ExtentTest test = extent.createTest("verifying the cutomers can withdrawmoney from their account");
-        customer_account.customerWithdrawMoney(5000);
-        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestSuccessScreenShot\\customerWithdrawMoney.jpg");
-        test.info("customer withdrawed money successfully");
+        customer_account.customerWithdrawMoney(15000);
+        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\customerWithdrawMoney.jpg");
+        test.warning("customer fail to withdraw money ,enter money greater than available balance");
         Thread.sleep(2000);
-        withdraw=customer_account.gettingwithdrawmoney();
     }
     @Test(priority = 9)
     public void verifyTransaction() throws Exception{
         ExtentTest test = extent.createTest("verifying the cutomers transation history");
         customer_account.checkingTransaction();
-        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestSuccessScreenShot\\checkingTransaction.jpg");
+        takeSnapShot(driver, "C:\\Users\\vuchander\\Maven_project\\TestFailureScreenhot\\checkingTransaction.jpg");
         test.info("customer Transactions are stored  successfully");
         Thread.sleep(2000);
         test.pass("transactions are updated Successfully");
@@ -162,23 +157,12 @@ public class Parallelexecution1 {
             {
                 if(type.equals("Credit"))
 
-                accountStatus=true;
-            }
-            if(val.equals("5000"))
-            {
-                if(type.equals("Debit"))
-                {
                     accountStatus=true;
-                }
-
             }
-
             counter++;
         }
         Assert.assertTrue(accountStatus);
         test.info("Transaction details are correct and updated successfully");
-
-
     }
 
     @AfterTest
@@ -187,5 +171,4 @@ public class Parallelexecution1 {
     }
 
 }
-
 
